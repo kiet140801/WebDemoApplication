@@ -1,0 +1,36 @@
+﻿@model List<WebDemoApplication.Models.Entities.CartItem>
+
+@{
+}
+
+<h2>Shopping Cart</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Ball Name</th>
+            <th>Price</th>
+            <th>Quantity</th>
+            <th>Total</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Ball.Name</td>
+                <td>@item.Ball.Price</td>
+                <td>@item.Quantity</td>
+                <td>@(item.Ball.Price * item.Quantity)</td>
+                <td>
+                    <form asp-action="RemoveFromCart" method="post">
+                        <input type="hidden" name="id" value="@item.Id" />
+                        <button type="submit" class="btn btn-danger">Remove</button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
